@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['delete'])) {
         $controlador->eliminarUsuario($_POST['idUsuario']);
     } elseif (isset($_POST['add'])) {
-        $controlador->agregarUsuario($_POST['nombreUsuario'], $_POST['apellidoUsuario'], $_POST['emailUsuario'], $_POST['passwordUsuario'], $_POST['telefonoUsuario']);
+        $controlador->agregarUsuario($_POST['nombreUsuario'], $_POST['apellidoUsuario'], $_POST['emailUsuario'], $_POST['passwordUsuario'], $_POST['telefonoUsuario'], $_POST['telefonoUsuario'], $POST['rolUsuario']);
     }
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
@@ -39,6 +39,7 @@ $usuarios = $controlador->listarUsuarios();
                     <th>Email</th>
                     <th>Password</th>
                     <th>Teléfono</th>
+                    <th>Rol</th>
                     <th>Eliminar</th>
                     <th>Editar</th>
                 </tr>
@@ -54,6 +55,7 @@ $usuarios = $controlador->listarUsuarios();
                                 <td>{$row['emailUsuario']}</td>
                                 <td>{$row['passwordUsuario']}</td>
                                 <td>{$row['telefonoUsuario']}</td>
+                                <td>{$row['rolUsuario']}</td>
                                 <td>
                                     <form method='POST' style='display:inline-block;'>
                                         <input type='hidden' name='idUsuario' value='{$row['idUsuario']}'>
@@ -97,6 +99,11 @@ $usuarios = $controlador->listarUsuarios();
                 <label for="telefonoUsuario" class="form-label">Teléfono Usuario:</label>
                 <input type="text" name="telefonoUsuario" class="form-control" required>
             </div>
+            <div class="mb-3">
+                <label for="rolUsuario" class="form-label">Rol:</label>
+                <input type="text" name="rolUsuario" class="form-control" required>
+            </div>
+
             <button type="submit" name="add" class="btn btn-success">Agregar Usuario</button>
         </form>
         <a href="/vistas/agrosmart.php" class="btn btn-primary mt-4">Volver al Menú de Inicio</a>

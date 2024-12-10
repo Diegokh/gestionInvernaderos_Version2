@@ -1,8 +1,20 @@
 <?php
-include_once __DIR__ . '/../../controllers/controladorHistorial.php';
+session_start(); // Asegúrate de iniciar la sesión
+include_once '../../controllers/controladorHistorial.php';
+
+// Verifica si el usuario está logueado
+$idUsuario = $_SESSION['idUsuario'] ?? null;
+$esAdministrador = ($_SESSION['rolUsuario'] ?? '') === 'Administrador';
+
+if ($idUsuario === null) {
+    die("Usuario no autenticado.");
+}
 
 // Instanciar el controlador
 $controlador = new controladorHistorial();
+
+// Obtener el historial dependiendo del usuario y su rol
+$historial = $controlador->obtenerHistorial($idUsuario, $esAdministrador);
 
 // Manejo de acciones (eliminar registro)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
@@ -10,9 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
-
-// Obtener el historial
-$historial = $controlador->obtenerHistorial();
 ?>
 
 <!DOCTYPE html>

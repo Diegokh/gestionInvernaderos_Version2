@@ -1,8 +1,20 @@
 <?php
+session_start(); // Asegúrate de iniciar la sesión
 include_once '../../controllers/controladorAlerta.php';
+
+// Verifica si el usuario está logueado
+$idUsuario = $_SESSION['idUsuario'] ?? null;
+$esAdministrador = ($_SESSION['rolUsuario'] ?? '') === 'Administrador';
+
+if ($idUsuario === null) {
+    die("Usuario no autenticado.");
+}
 
 // Instanciar el controlador
 $controlador = new controladorAlerta();
+
+// Obtener las alertas dependiendo del usuario y su rol
+$alertas = $controlador->obtenerAlertas($idUsuario, $esAdministrador);
 
 // Manejo de acciones (eliminar alerta)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
@@ -10,9 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
-
-// Obtener las alertas
-$alertas = $controlador->obtenerAlertas();
 ?>
 
 <!DOCTYPE html>
@@ -68,6 +77,5 @@ $alertas = $controlador->obtenerAlertas();
         </table>
         <a href="/vistas/agrosmart.php" class="btn btn-primary mt-4">Volver al Menú de Inicio</a>
     </div>
-
 </body>
 </html>

@@ -1,19 +1,15 @@
 <?php
-include_once '../models/Usuario.php';
+include_once __DIR__ . '/../models/Sesion.php';
 
 class controladorSesion {
-    private $usuarioModel;
+    private $sesionModel;
 
     public function __construct() {
-        $this->usuarioModel = new Usuario();
+        $this->sesionModel = new Sesion();
     }
 
     public function iniciarSesion($email, $password) {
-        return $this->usuarioModel->validarUsuario($email, $password);
-    }
-
-    public function __destruct() {
-        $this->usuarioModel->cerrarConexion();
+        return $this->sesionModel->validarCredenciales($email, $password);
     }
 }
 ?>

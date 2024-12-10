@@ -1,13 +1,27 @@
 <?php
+session_start(); // Asegúrate de iniciar la sesión
+
 include_once '../../controllers/controladorSensores.php';
 
+// Obtén el idUsuario y rolUsuario desde la sesión
+$idUsuario = $_SESSION['idUsuario'] ?? null;
+$rolUsuario = $_SESSION['rolUsuario'] ?? null;
+
+// Determina si el usuario es administrador
+$esAdministrador = ($rolUsuario === 'Administrador');
+
+// Verifica que el usuario esté logueado
+if (!$idUsuario) {
+    die("Usuario no logueado.");
+}
 
 // Instanciar el controlador
 $controlador = new controladorSensores();
 
 // Obtener los sensores
-$sensores = $controlador->obtenerSensores();
+$sensores = $controlador->obtenerSensores($idUsuario, $esAdministrador);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

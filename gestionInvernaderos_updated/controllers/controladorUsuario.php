@@ -12,8 +12,8 @@ class controladorUsuario {
         return $this->usuarioModelo->obtenerUsuarios();
     }
 
-    public function agregarUsuario($nombre, $apellido, $email, $password, $telefono) {
-        $this->usuarioModelo->agregarUsuario($nombre, $apellido, $email, $password, $telefono);
+    public function agregarUsuario($nombre, $apellido, $email, $password, $telefono, $rolUsuario) {
+        $this->usuarioModelo->agregarUsuario($nombre, $apellido, $email, $password, $telefono, $rolUsuario);
     }
 
     public function eliminarUsuario($idUsuario) {
@@ -26,8 +26,8 @@ class controladorUsuario {
     }
 
     // Actualizar un usuario
-    public function actualizarUsuario($id, $nombre, $apellido, $email, $password, $telefono) {
-        $this->usuarioModelo->actualizarUsuario($id, $nombre, $apellido, $email, $password, $telefono);
+    public function actualizarUsuario($id, $nombre, $apellido, $email, $password, $telefono, $rolUsuario) {
+        $this->usuarioModelo->actualizarUsuario($id, $nombre, $apellido, $email, $password, $telefono, $rolUsuario);
     }
 
     public function __destruct() {

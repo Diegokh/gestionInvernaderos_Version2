@@ -2,18 +2,18 @@
 include_once '../../models/Sensores.php';
 
 class controladorSensores {
-    private $sensoresModel;
+    private $modeloSensores;
 
     public function __construct() {
-        $this->sensoresModel = new Sensores();
+        $this->modeloSensores = new Sensores();
     }
 
-    public function obtenerSensores() {
-        return $this->sensoresModel->obtenerSensoresPorInvernadero();
+    public function obtenerSensores($idUsuario, $esAdministrador) {
+        return $this->modeloSensores->obtenerSensoresPorUsuario($idUsuario, $esAdministrador);
     }
 
     public function __destruct() {
-        $this->sensoresModel->cerrarConexion();
+        $this->modeloSensores->cerrarConexion();
     }
 }
 ?>

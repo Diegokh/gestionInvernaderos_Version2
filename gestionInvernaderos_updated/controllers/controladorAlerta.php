@@ -8,10 +8,12 @@ class controladorAlerta {
         $this->alertaModel = new Alerta();
     }
 
-    // Obtener las alertas
-    public function obtenerAlertas() {
-        return $this->alertaModel->obtenerAlertas();
+  
+
+    public function obtenerAlertas($idUsuario, $esAdministrador) {
+        return $this->alertaModel->obtenerAlertas($idUsuario, $esAdministrador);
     }
+    
 
     // Eliminar una alerta
     public function eliminarAlerta($idAlerta) {

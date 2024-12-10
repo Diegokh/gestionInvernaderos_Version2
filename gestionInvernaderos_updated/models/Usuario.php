@@ -25,9 +25,9 @@ class Usuario extends Database {
     }
 
     // Agregar un usuario
-    public function agregarUsuario($nombre, $apellido, $email, $password, $telefono) {
+    public function agregarUsuario($nombre, $apellido, $email, $password, $telefono, $rolUsuario) {
         $query = "INSERT INTO usuarios (nombreUsuario, apellidoUsuario, emailUsuario, passwordUsuario, telefonoUsuario) 
-                  VALUES ('$nombre', '$apellido', '$email', '$password', '$telefono')";
+                  VALUES ('$nombre', '$apellido', '$email', '$password', '$telefono', '$rolUsuario')";
         if ($this->connection->query($query)) {
             return true;
         } else {
@@ -68,10 +68,10 @@ class Usuario extends Database {
     }
 
     // Actualizar un usuario
-    public function actualizarUsuario($id, $nombre, $apellido, $email, $password, $telefono) {
-        $query = "UPDATE usuarios SET nombreUsuario = ?, apellidoUsuario = ?, emailUsuario = ?, passwordUsuario = ?, telefonoUsuario = ? WHERE idUsuario = ?";
+    public function actualizarUsuario($id, $nombre, $apellido, $email, $password, $telefono, $rolUsuario) {
+        $query = "UPDATE usuarios SET nombreUsuario = ?, apellidoUsuario = ?, emailUsuario = ?, passwordUsuario = ?, telefonoUsuario = ?, rolUsuario = ? WHERE idUsuario = ?";
         $stmt = $this->connection->prepare($query);
-        $stmt->bind_param("sssssi", $nombre, $apellido, $email, $password, $telefono, $id);
+        $stmt->bind_param("ssssssi", $nombre, $apellido, $email, $password, $telefono, $rolUsuario, $id);
         $stmt->execute();
         $stmt->close();
     }

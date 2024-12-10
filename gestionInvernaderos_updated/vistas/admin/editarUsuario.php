@@ -17,8 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['emailUsuario'];
     $password = $_POST['passwordUsuario'];
     $telefono = $_POST['telefonoUsuario'];
+    $rolUsuario = $_POST['rolUsuario'];
 
-    $usuarioModel->actualizarUsuario($id, $nombre, $apellido, $email, $password, $telefono); // Método en la clase Usuario
+    $usuarioModel->actualizarUsuario($id, $nombre, $apellido, $email, $password, $telefono, $rolUsuario); // Método en la clase Usuario
     header('Location: gestionUsuario.php');
     exit();
 }
@@ -56,6 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mb-3">
                 <label for="telefonoUsuario" class="form-label">Teléfono:</label>
                 <input type="text" name="telefonoUsuario" class="form-control" value="<?php echo $usuario['telefonoUsuario']; ?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="rolUsuario" class="form-label">Rol:</label>
+                <input type="text" name="rolUsuario" class="form-control" value="<?php echo $usuario['rolUsuario']; ?>" required>
             </div>
             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
         </form>
