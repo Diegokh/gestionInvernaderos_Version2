@@ -1,6 +1,14 @@
 <?php
 include_once __DIR__ . '/Database.php';
 
+/* 
+Extiende la clase Database: Esto significa que Usuario hereda todos los métodos 
+y propiedades de la clase Database, que probablemente gestiona la conexión a la 
+base de datos.
+
+Propiedades privadas: Cada propiedad corresponde a un campo en la tabla usuarios 
+de la base de datos.
+*/
 class Usuario extends Database {
     private $idUsuario;
     private $nombreUsuario;
@@ -17,9 +25,9 @@ class Usuario extends Database {
     // Obtener todos los usuarios
     public function obtenerUsuarios() {
         $query = "SELECT * FROM usuarios";
-        $result = $this->connection->query($query);
+        $result = $this->connection->query($query);//Ejecución de la consulta: Usa $this->connection->query($query) para ejecutar la consulta.
         if (!$result) {
-            die("Error al obtener usuarios: " . $this->connection->error);
+            die("Error al obtener usuarios: " . $this->connection->error);//Al fallar  se mostrara el mensaje conla ultimna operacion realizada
         }
         return $result;
     }
@@ -29,7 +37,7 @@ class Usuario extends Database {
         $query = "INSERT INTO usuarios (nombreUsuario, apellidoUsuario, emailUsuario, passwordUsuario, telefonoUsuario, rolUsuario) 
                   VALUES ('$nombre', '$apellido', '$email', '$password', '$telefono', '$rolUsuario')";
         if ($this->connection->query($query)) {
-            return true;
+            return true; //Si la inserción es exitosa, devuelve true
         } else {
             die("Error al agregar usuario: " . $this->connection->error);
         }
@@ -91,6 +99,7 @@ class Usuario extends Database {
     
 
     //Set y Getter
+    //Obtengi y establezco los valores de las propiedades privadas
     public function setIdUsuario($id) {
         $this->idUsuario = $id;
     }
