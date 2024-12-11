@@ -12,6 +12,12 @@ class controladorSensores {
         return $this->modeloSensores->obtenerSensoresPorUsuario($idUsuario, $esAdministrador);
     }
 
+    public function obtenerTiposDeSensores() {
+        return $this->modeloSensores->obtenerTiposDeSensores();
+    }
     
+    public function agregarSensor($idInvernadero, $tipoSensor, $ubicacion) {
+        $this->modeloSensores->agregarSensor($idInvernadero, $tipoSensor, $ubicacion);
+    }
 }
 ?>

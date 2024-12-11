@@ -39,26 +39,26 @@ $sensores = $controlador->obtenerSensores($idUsuario, $esAdministrador);
             <thead>
                 <tr>
                     <th>ID Invernadero</th>
+                    <th>Ubicación del Invernadero</th>
                     <th>ID Sensor</th>
-                    <th>Ubicación</th>
                     <th>Tipo de Sensor</th>
+                    <th>Ubicación del Sensor</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
-                if ($sensores && $sensores->num_rows > 0) {
-                    while ($row = $sensores->fetch_assoc()) {
-                        echo "<tr>
-                                <td>{$row['id_Invernadero']}</td>
-                                <td>{$row['idSensor']}</td>
-                                <td>{$row['ubicacionInvernadero']}</td>
-                                <td>{$row['tipo_sensor']}</td>
-                              </tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='4'>No se han encontrado sensores en invernaderos</td></tr>";
-                }
-                ?>
+                <?php if ($sensores && $sensores->num_rows > 0): ?>
+                    <?php while ($row = $sensores->fetch_assoc()): ?>
+                        <tr>
+                            <td><?php echo $row['id_Invernadero']; ?></td>
+                            <td><?php echo $row['ubicacionInvernadero']; ?></td>
+                            <td><?php echo $row['idSensor']; ?></td>
+                            <td><?php echo $row['tipo_sensor']; ?></td>
+                            <td><?php echo $row['ubicacionSensor']; ?></td>
+                        </tr>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <tr><td colspan="5">No se encontraron sensores para este usuario.</td></tr>
+                <?php endif; ?>
             </tbody>
         </table>
         <a href="/vistas/agrosmart.php" class="btn btn-primary mt-4">Volver al Menú de Inicio</a>
