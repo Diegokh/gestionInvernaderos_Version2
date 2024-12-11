@@ -39,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
+                    <th>ID Invernadero</th>
                     <th>ID Historial</th>
                     <th>Acción</th>
                     <th>Fecha</th>
@@ -53,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
                 if ($historial && $historial->num_rows > 0) {
                     while ($row = $historial->fetch_assoc()) {
                         echo "<tr>
+                                <td>{$row['id_Invernadero']}</td>
                                 <td>{$row['idHistorial']}</td>
                                 <td>{$row['accionHistorial']}</td>
                                 <td>{$row['fechaHistorial']}</td>

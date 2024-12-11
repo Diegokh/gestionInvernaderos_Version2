@@ -62,7 +62,7 @@ $conn = mysqli_connect($server, $user, $pass, $base);
     </div>
 
     <div class="img-container">
-        <img class="img" src="/img/logo.png" alt="Logo de AgroSmart">
+        <img class="img" src="/assets/img/logo.png" alt="Logo de AgroSmart">
     </div>
 
 </body>
