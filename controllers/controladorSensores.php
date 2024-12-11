@@ -12,8 +12,6 @@ class controladorSensores {
         return $this->modeloSensores->obtenerSensoresPorUsuario($idUsuario, $esAdministrador);
     }
 
-    public function __destruct() {
-        $this->modeloSensores->cerrarConexion();
-    }
+    
 }
 ?>

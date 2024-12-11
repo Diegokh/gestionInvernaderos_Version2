@@ -13,5 +13,9 @@ abstract class Database {
     public function closeConnection() {
         $this->connection->close();
     }
+
+    public function __destruct() {
+        $this->closeConnection();
+    }
 }
 ?>

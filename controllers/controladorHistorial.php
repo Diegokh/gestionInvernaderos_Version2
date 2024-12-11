@@ -20,8 +20,6 @@ class controladorHistorial {
 
     
 
-    public function __destruct() {
-        $this->historialModel->cerrarConexion();
-    }
+    
 }
 ?>

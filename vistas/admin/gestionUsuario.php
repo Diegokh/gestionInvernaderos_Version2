@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['delete'])) {
         $controlador->eliminarUsuario($_POST['idUsuario']);
     } elseif (isset($_POST['add'])) {
-        $controlador->agregarUsuario($_POST['nombreUsuario'], $_POST['apellidoUsuario'], $_POST['emailUsuario'], $_POST['passwordUsuario'], $_POST['telefonoUsuario'], $_POST['telefonoUsuario'], $POST['rolUsuario']);
+        $controlador->agregarUsuario($_POST['nombreUsuario'], $_POST['apellidoUsuario'], $_POST['emailUsuario'], $_POST['passwordUsuario'], $_POST['telefonoUsuario'], $_POST['telefonoUsuario'], $_POST['rolUsuario']);
     }
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();

@@ -20,8 +20,6 @@ class controladorAlerta {
         $this->alertaModel->eliminarAlerta($idAlerta);
     }
 
-    public function __destruct() {
-        $this->alertaModel->cerrarConexion();
-    }
+   
 }
 ?>

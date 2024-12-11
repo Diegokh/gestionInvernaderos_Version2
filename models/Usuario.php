@@ -26,7 +26,7 @@ class Usuario extends Database {
 
     // Agregar un usuario
     public function agregarUsuario($nombre, $apellido, $email, $password, $telefono, $rolUsuario) {
-        $query = "INSERT INTO usuarios (nombreUsuario, apellidoUsuario, emailUsuario, passwordUsuario, telefonoUsuario) 
+        $query = "INSERT INTO usuarios (nombreUsuario, apellidoUsuario, emailUsuario, passwordUsuario, telefonoUsuario, rolUsuario) 
                   VALUES ('$nombre', '$apellido', '$email', '$password', '$telefono', '$rolUsuario')";
         if ($this->connection->query($query)) {
             return true;
@@ -69,17 +69,26 @@ class Usuario extends Database {
 
     // Actualizar un usuario
     public function actualizarUsuario($id, $nombre, $apellido, $email, $password, $telefono, $rolUsuario) {
-        $query = "UPDATE usuarios SET nombreUsuario = ?, apellidoUsuario = ?, emailUsuario = ?, passwordUsuario = ?, telefonoUsuario = ?, rolUsuario = ? WHERE idUsuario = ?";
+        $query = "UPDATE usuarios 
+                  SET nombreUsuario = ?, apellidoUsuario = ?, emailUsuario = ?, passwordUsuario = ?, telefonoUsuario = ?, rolUsuario = ? 
+                  WHERE idUsuario = ?";
         $stmt = $this->connection->prepare($query);
+    
+        if (!$stmt) {
+            die("Error al preparar la consulta: " . $this->connection->error);
+        }
+    
+        // Asocia los parámetros con los valores proporcionados
         $stmt->bind_param("ssssssi", $nombre, $apellido, $email, $password, $telefono, $rolUsuario, $id);
-        $stmt->execute();
+    
+        if (!$stmt->execute()) {
+            die("Error al ejecutar la consulta: " . $stmt->error);
+        }
+    
         $stmt->close();
     }
 
-    // Cerrar conexión
-    public function cerrarConexion() {
-        $this->connection->close();
-    }
+    
 
     //Set y Getter
     public function setIdUsuario($id) {

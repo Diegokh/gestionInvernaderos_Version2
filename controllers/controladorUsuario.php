@@ -30,8 +30,6 @@ class controladorUsuario {
         $this->usuarioModelo->actualizarUsuario($id, $nombre, $apellido, $email, $password, $telefono, $rolUsuario);
     }
 
-    public function __destruct() {
-        $this->usuarioModelo->cerrarConexion();
-    }
+    
 }
 ?>

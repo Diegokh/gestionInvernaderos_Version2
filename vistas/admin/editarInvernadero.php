@@ -46,7 +46,7 @@ if (isset($_POST['editar_invernadero'])) {
             <p class="text-danger">Invernadero no encontrado</p>
         <?php endif; ?>
 
-        <a href="/php_gestionInvernaderos/agrosmart.php" class="btn btn-primary mt-4">Volver al Menú de Inicio</a>
+        <a href="/vistas/agrosmart.php" class="btn btn-primary mt-4">Volver al Menú de Inicio</a>
     </div>
 </body>
 </html>
